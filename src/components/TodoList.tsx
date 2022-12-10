@@ -29,23 +29,21 @@ const TodoList = () => {
             ...item,
             isDeleted: idx == i ? true : item.isDeleted
         })))
+        TodoApi.deleteTodos(i + 1)
     }
 
-    const addItem = (value: string) => {
+    const addItem = (todo: Todo) => {
         setTodos([
             ...todos,
-            {
-                userId: 1,
-                title: value,
-                completed: false,
-                isDeleted: false
-            }
+            todo
         ])
     }
 
-    /*useEffect(() => {
-        loadData()
-    }, [])*/
+    useEffect(() => {
+        if (todos.length == 0) {
+            loadData()
+        }
+    }, [])
 
     return (
         <Flex flexDirection={'column'} gap={5}>
@@ -63,7 +61,14 @@ const TodoList = () => {
                         <Button 
                             variant={"ghost"}
                             onClick={() => {
-                                addItem(newTodo)
+                                const newTodoItem: Todo = {
+                                    userId: 1,
+                                    title: newTodo,
+                                    completed: false,
+                                    isDeleted: false
+                                }
+                                TodoApi.addTodos(newTodoItem)
+                                addItem(newTodoItem)
                                 setNewTodo("")
                             }}
                         >

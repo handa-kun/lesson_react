@@ -1,0 +1,25 @@
+{
+  "todos": [
+    {
+      "userId": 1,
+      "title": "Watch Anime",
+      "completed": false,
+      "isDeleted": false,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "title": "IT",
+      "completed": false,
+      "isDeleted": false,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "title": "Music",
+      "completed": false,
+      "isDeleted": false,
+      "id": 3
+    }
+  ]
+}
