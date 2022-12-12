@@ -2,13 +2,6 @@
   "todos": [
     {
       "userId": 1,
-      "title": "Watch Anime",
-      "completed": false,
-      "isDeleted": false,
-      "id": 1
-    },
-    {
-      "userId": 1,
       "title": "IT",
       "completed": false,
       "isDeleted": false,
@@ -34,6 +27,13 @@
       "completed": false,
       "isDeleted": false,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "title": "Anime",
+      "completed": false,
+      "isDeleted": false,
+      "id": 6
     }
   ]
 }

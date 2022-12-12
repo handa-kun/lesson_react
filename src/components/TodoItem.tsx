@@ -22,7 +22,7 @@ const TodoItem: FC<TodoItemProps> = (props) => {
         <Flex rounded={'xl'} border={'1px dashed'} borderColor={'blue.300'} gap={5} p={3}>
             <Checkbox 
             isChecked={complete} 
-            onChange={() => {setComplete(!complete)} } />
+            onChange={() => {setComplete(!complete)}} />
             <Text as={complete ? 'del' : 'p'} alignSelf={'center'}>
                 <Text as='span' color={'blackAlpha.300'}>{props.serial}. </Text>
                 {props.todo.title}
