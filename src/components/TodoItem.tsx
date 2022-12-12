@@ -1,6 +1,7 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Checkbox, Flex, IconButton, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
+import { TodoApi } from '../api/todoApi';
 import { Todo } from '../types/Todo';
 
 interface TodoItemProps {
@@ -19,7 +20,9 @@ const TodoItem: FC<TodoItemProps> = (props) => {
 
     return (
         <Flex rounded={'xl'} border={'1px dashed'} borderColor={'blue.300'} gap={5} p={3}>
-            <Checkbox isChecked={complete} onChange={() => {setComplete(!complete)}} />
+            <Checkbox 
+            isChecked={complete} 
+            onChange={() => {setComplete(!complete)} } />
             <Text as={complete ? 'del' : 'p'} alignSelf={'center'}>
                 <Text as='span' color={'blackAlpha.300'}>{props.serial}. </Text>
                 {props.todo.title}

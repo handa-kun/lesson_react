@@ -20,4 +20,9 @@ export class TodoApi {
     static deleteTodos = (id: number) => {
         return api.delete(`/todos/${id}`)
     }
+
+    static changeChecked = (id: number) => {
+        return api.put(`/todos/completed`)
+    }
+    
  }
