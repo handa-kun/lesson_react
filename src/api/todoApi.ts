@@ -21,8 +21,8 @@ export class TodoApi {
         return api.delete(`/todos/${id}`)
     }
 
-    static changeChecked = (id: number, completed: boolean) => {
-        return api.put(`/todos/${id}${completed}`)
+    static changeChecked = (completed: boolean) => {
+        return api.put(`/todos/${completed}`)
     }
     
  }

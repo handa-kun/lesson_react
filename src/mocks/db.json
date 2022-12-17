@@ -2,38 +2,17 @@
   "todos": [
     {
       "userId": 1,
-      "title": "IT",
+      "title": "Test",
+      "completed": false,
+      "isDeleted": false,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "title": "Test",
       "completed": false,
       "isDeleted": false,
       "id": 2
-    },
-    {
-      "userId": 1,
-      "title": "Music",
-      "completed": false,
-      "isDeleted": false,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "title": "Studiying",
-      "completed": false,
-      "isDeleted": false,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "title": "Sport",
-      "completed": false,
-      "isDeleted": false,
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "title": "Anime",
-      "completed": false,
-      "isDeleted": false,
-      "id": 6
     }
   ]
 }
