@@ -4,8 +4,8 @@ export const Main = (props: StackProps) => (
   <Stack
     spacing="1.5rem"
     width="100%"
-    maxWidth="48rem"
-    mt="-45vh"
+    maxWidth="25rem"
+    mt="5vh"
     pt="8rem"
     px="1rem"
     {...props}
