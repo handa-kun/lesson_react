@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "fake": "json-server --port 5000 --watch src/mocks/db.json",
+    "homepage": "https: //handa-kun.github.io/lesson_react/",
     "dev": "next",
     "build": "next build",
     "start": "next start",
