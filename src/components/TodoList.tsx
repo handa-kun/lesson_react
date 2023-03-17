@@ -2,89 +2,65 @@ import { AddIcon } from "@chakra-ui/icons"
 import { Button, Flex, FormControl, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { TodoApi } from "../api/todoApi"
-import { Todo } from "../types/Todo"
+import { useAppDispatch, useAppSelector } from '../redux/hooks/redux'
+import { addItem } from '../redux/slices/todoSlice'
 import TodoItem from './TodoItem'
 
-
 const TodoList = () => {
-    const [todos, setTodos] = useState([] as Todo[])
-    const [newTodo, setNewTodo] = useState("")
+    const [text, setText] = useState<string>('');
 
-    const loadData = () => {
-        TodoApi.getTodos()
-            .then((response) => {
-                console.log(response.data)
-                setTodos(response.data.map((item) => ({
-                    ...item,
-                    isDeleted: false
-                })))
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+    const todos = useAppSelector(state => state.todoReducer.todos);
+    const dispatch = useAppDispatch();
 
-    const deleteItem = (i: number) => {
-        setTodos(todos.map((item, idx) => ({
-            ...item,
-            isDeleted: idx == i ? true : item.isDeleted
-        })))
-        TodoApi.deleteTodos(i + 1)
-    }
+    const addTask = () => {
+        dispatch(addItem(text));
+        setText('')
+    };
 
-    const addItem = (todo: Todo) => {
-        setTodos([
-            ...todos,
-            todo
-        ])
-    }
-
-    useEffect(() => {
-        if (todos.length == 0) {
-            loadData()
-        }
-    }, [])
-
+    /*   useEffect(() => {
+          if (todos.length == 0) {
+              loadData()
+          }
+      }, []);
+  
+      const loadData = () => {
+          TodoApi.getTodos()
+              .then((response) => {
+                  setTodos(response.data.map((item: any) => ({
+                      ...item,
+                      isDeleted: false
+                  })))
+              })
+              .catch((err) => {
+                  err === 'Error';
+              })
+      };
+  
+     */
     return (
         <Flex flexDirection={'column'} gap={5}>
             <FormControl>
                 <InputGroup>
                     <Input
                         placeholder={"Your dos"}
-                        value={newTodo}
+                        value={text}
                         onChange={(event) => {
-                            setNewTodo(event.target.value)
+                            setText(event.target.value)
                         }}
-
                     />
                     <InputRightElement >
                         <Button
                             variant={"ghost"}
-                            onClick={() => {
-                                const newTodoItem: Todo = {
-                                    userId: 1,
-                                    title: newTodo,
-                                    completed: false,
-                                    isDeleted: false
-                                }
-                                TodoApi.addTodos(newTodoItem)
-                                addItem(newTodoItem)
-                                setNewTodo("")
-                            }}
+                            onClick={() => addTask()}
                         >
                             <AddIcon />
                         </Button>
                     </InputRightElement>
                 </InputGroup>
             </FormControl>
-
-            {
-                todos.map((item, idx) => {
-                    return <TodoItem todo={item} serial={idx + 1} key={idx} deleteItem={() => deleteItem(idx)} />
-                })
-            }
+            {todos.map((item, idx) => <TodoItem serial={idx + 1} key={item.id} todo={item} />)}
         </Flex>
     )
-}
+};
 
-export default TodoList
+export default TodoList;

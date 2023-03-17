@@ -7,16 +7,13 @@ export const api = axios.create({
     headers: { 'X-Custom-Header': 'foobar' }
 });
 
-
 export class TodoApi {
     static getTodos = () => {
         return api.get('/todos')
     }
-
     static addTodos = (todo: Todo) => {
         return api.post('/todos', todo)
     }
-
     static deleteTodos = (id: number) => {
         return api.delete(`/todos/${id}`)
     }

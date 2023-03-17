@@ -1,30 +1,21 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Checkbox, Flex, IconButton, Text } from '@chakra-ui/react';
-import { FC, useState } from 'react';
-import { Todo } from '../types/Todo';
+import { FC } from 'react';
+import { useAppDispatch } from '../redux/hooks/redux';
+import { deleteItem, toggleItem } from '../redux/slices/todoSlice';
+import { TodoItemProps } from './interfaces/TodoItem';
 
-interface TodoItemProps {
-    serial: number
-    deleteItem: any
-    todo: Todo
-}
-
-const TodoItem: FC<TodoItemProps> = (props) => {
-    const [complete, setComplete] = useState(props.todo.completed);
-
-    if (props.todo.isDeleted) {
-        return <></>
-    };
-
+const TodoItem: FC<TodoItemProps> = ({ serial, todo }) => {
+    const dispatch = useAppDispatch();
 
     return (
         <Flex rounded={'xl'} border={'1px dashed'} borderColor={'blue.300'} gap={5} p={3}>
             <Checkbox
-                isChecked={complete}
-                onChange={() => { setComplete(!complete) }} />
-            <Text as={complete ? 'del' : 'p'} alignSelf={'center'}>
-                <Text as='span' color={'blackAlpha.300'}>{props.serial}. </Text>
-                {props.todo.title}
+                isChecked={todo.completed}
+                onChange={() => dispatch(toggleItem(todo.id))} />
+            <Text as={todo.completed ? 'del' : 'p'} alignSelf={'center'}>
+                <Text as='span' color={'blackAlpha.300'}>{serial}:</Text>
+                {todo.title}
             </Text>
             <IconButton
                 variant='outline'
@@ -33,11 +24,10 @@ const TodoItem: FC<TodoItemProps> = (props) => {
                 fontSize='20px'
                 ml={'auto'}
                 icon={<DeleteIcon />}
-                onClick={props.deleteItem}
+                onClick={() => dispatch(deleteItem(todo.id))}
             />
         </Flex>
-    )
-}
-
+    );
+};
 
 export default TodoItem;
